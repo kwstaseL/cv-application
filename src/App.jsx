@@ -1,23 +1,24 @@
 import "../styles/App.css";
-import Nav from "./Nav/Nav";
 import Canvas from "./Canvas/Canvas";
 import Forms from "./Forms/Forms";
-import { useState } from "react";
+import Options from "./Options/Options";
+import Button from "./components/Button";
 
 function App() {
-  const [currentState, setState] = useState("content");
-  function handleOptionsClick(e) {
-    const targetElement = e.target;
-    const elementValue = targetElement.value;
-    setState(elementValue.toLowerCase());
-  }
-
   return (
     <>
-      <Nav handleOptionsClick={handleOptionsClick} state={currentState} />
-      <main className="main container">
-        <Canvas />
-        <Forms />
+      <main className="main">
+        <section className="upper container">
+          <Options />
+          <Canvas />
+        </section>
+        <section className="down container">
+          <div className="demo">
+            {" "}
+            <Button title="Login With LinkedIn" color="#0072b1" />
+          </div>
+          <Forms />
+        </section>
       </main>
     </>
   );

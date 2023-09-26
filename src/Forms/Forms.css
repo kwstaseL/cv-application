@@ -1,1 +1,27 @@
+.forms {
+  background-color: #182037;
+  padding-top: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 0.1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
 
+.form {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  padding-right: 3rem;
+  background-color: #212943;
+  border-radius: 5px;
+}
+
+.form__extend-arrow {
+  width: var(--size-sm);
+}
+
+.form__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

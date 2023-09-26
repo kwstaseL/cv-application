@@ -1,3 +1,6 @@
+.options {
+  margin-top: 2rem;
+}
 .options > * {
   margin-left: 0.6rem;
 }

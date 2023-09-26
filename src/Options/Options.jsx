@@ -6,18 +6,13 @@ function Options({ handleOptionsClick }) {
   return (
     <div className="options">
       <Button
-        title="Content"
-        color="white"
+        title="Clear"
+        color="#4f46e5"
         handleOptionsClick={handleOptionsClick}
       />
       <Button
-        title="Personalize"
-        color="white"
-        handleOptionsClick={handleOptionsClick}
-      />
-      <Button
-        title="Settings"
-        color="white"
+        title="Save as PDF"
+        color="#e11d48"
         handleOptionsClick={handleOptionsClick}
       />
     </div>

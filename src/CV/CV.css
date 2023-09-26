@@ -1,3 +1,32 @@
 .cv {
+  width: 100%;
   background-color: #fff;
+  margin: 0; /* Add this line to remove any default margin */
+  padding: 0; /* Add this line to remove any default padding */
+}
+
+.cv__header {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  background-color: var(--clr-cv);
+  box-sizing: border-box;
+}
+
+.cv__name {
+  font-size: var(--size-xs);
+}
+
+.cv__role {
+  margin-top: 0.1rem;
+  font-size: var(--size-3xs);
+  font-weight: lighter;
+  color: rgb(162, 156, 156);
+}
+
+/* Main */
+
+.cv__main {
+  display: grid;
+  grid-template-columns: 1fr auto;
 }

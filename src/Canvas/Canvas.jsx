@@ -3,7 +3,7 @@ import CV from "../CV/CV";
 
 function Canvas() {
   return (
-    <section className="canvas content-container shadow-texture section">
+    <section className="canvas shadow-texture section">
       <CV />
     </section>
   );
