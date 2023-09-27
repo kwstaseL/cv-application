@@ -9,14 +9,9 @@ function App() {
     <>
       <main className="main">
         <section className="upper container">
-          <Options />
           <Canvas />
         </section>
         <section className="down container">
-          <div className="demo">
-            {" "}
-            <Button title="Login With LinkedIn" color="#0072b1" />
-          </div>
           <Forms />
         </section>
       </main>

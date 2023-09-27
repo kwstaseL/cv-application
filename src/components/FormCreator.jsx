@@ -6,12 +6,25 @@ function FormCreator({ data }) {
       <div key={sectionIndex}>
         {section.fields.map((field, fieldIndex) => (
           <div key={fieldIndex}>
-            <label htmlFor={field.label}>{field.label}</label>
+            <label className="form__label" htmlFor={field.label}>
+              {field.label}
+            </label>
+            {field.recommended && (
+              <span className="optional-field" style={{ color: "red" }}>
+                *
+              </span>
+            )}
+            {field.optional && (
+              <span className="optional-field" style={{ marginLeft: "0.5rem" }}>
+                (Optional)
+              </span>
+            )}
             {field.input === "textarea" ? (
               <textarea
                 id={field.label}
                 name={field.label}
                 placeholder={field.placeholder}
+                className="form__input"
               ></textarea>
             ) : (
               <input
@@ -19,11 +32,10 @@ function FormCreator({ data }) {
                 id={field.label}
                 name={field.label}
                 placeholder={field.placeholder}
+                className="form__input"
               />
             )}
-            {field.optional && (
-              <span className="optional-field">(Optional)</span>
-            )}
+
             {field.isOngoing && (
               <span className="ongoing-field">(Ongoing)</span>
             )}

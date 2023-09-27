@@ -38,7 +38,7 @@ function Form({ title, showExtendedForm }) {
   return (
     <section className="form">
       <div className="form__header">
-        <h1>{title}</h1>
+        <h1 className="form__header-title">{title}</h1>
         <button onClick={handleArrowEvent}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

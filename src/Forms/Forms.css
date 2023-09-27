@@ -1,11 +1,11 @@
 .forms {
   background-color: #182037;
-  padding-top: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-bottom: 0.1rem;
+
   border-radius: 8px;
   margin-bottom: 2rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  padding: 1rem;
 }
 
 .form {
@@ -25,3 +25,31 @@
   align-items: center;
   justify-content: space-between;
 }
+
+/* xs */
+@media (min-width: 475px) {
+  .forms {
+    margin-left: 4rem;
+    max-width: 37ch;
+  }
+}
+
+/* sm */
+@media (min-width: 640px) {
+  .forms {
+    margin-left: 7rem;
+    max-width: 45ch;
+  }
+}
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* ls */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */

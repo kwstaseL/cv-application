@@ -1,10 +1,46 @@
 .canvas {
   width: 100%;
-  max-width: 30ch;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background-color: #fff;
-  padding-bottom: 30rem;
+  color: black;
+  max-width: 30ch;
+  padding-bottom: 35rem;
+  max-height: 65ch;
 }
+
+/* xs */
+@media (min-width: 475px) {
+  .canvas {
+    max-width: 36ch;
+    padding-bottom: 32rem;
+  }
+}
+
+/* sm */
+@media (min-width: 640px) {
+  .canvas {
+    max-width: 45ch;
+    padding-bottom: 40rem;
+  }
+}
+
+/* md */
+@media (min-width: 768px) {
+  .canvas {
+    max-width: 65ch;
+    padding-bottom: 50rem;
+  }
+}
+
+/* ls */
+@media (min-width: 1024px) {
+  .canvas {
+    max-width: 85ch;
+    padding-bottom: 60rem;
+  }
+}
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
