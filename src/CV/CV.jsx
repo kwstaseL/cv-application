@@ -1,4 +1,6 @@
 import "./CV.css";
+import EducationEntry from "../entries/EducationEntry";
+import ExperienceEntry from "../entries/ExperienceEntry";
 
 function CV() {
   return (
@@ -15,7 +17,34 @@ function CV() {
             praesentium fuga quasi consequatur dolorem laborum quis!
           </p>
           <section className="cv__section">
+            <h1 className="section__title">Experience</h1>
+            <ul className="cv__experience-list">
+              <ExperienceEntry
+                date="current-current"
+                position="Office Manager"
+                location="Revo Foods, Austria"
+                description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita consectetur quisquam fuga architecto. Accusantium, repellat?"
+              />
+            </ul>
+          </section>
+          <section className="cv__section">
             <h1 className="section__title">Education</h1>
+            <ul className="cv__education-list">
+              <EducationEntry
+                date={{ startDate: "2016-02-2", endDate: "2017-02-3" }}
+                schoolName="School Name"
+                major="Computer Science"
+                location="Austria, Vienna"
+                gpa="7.9/10"
+              />
+              <EducationEntry
+                date={{ startDate: "2016-02-2", endDate: "2017-02-3" }}
+                schoolName="School Name"
+                major="Computer Science"
+                location="Austria, Vienna"
+                gpa="7.9/10"
+              />
+            </ul>
           </section>
         </section>
         <aside className="cv__aside">

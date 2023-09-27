@@ -21,7 +21,11 @@ main {
 }
 
 @media (min-width: 768px) {
+}
+
+@media (min-width: 1024px) {
   main {
     flex-direction: row;
+    margin-bottom: 2rem;
   }
 }

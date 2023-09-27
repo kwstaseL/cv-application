@@ -10,8 +10,8 @@
 /* xs */
 @media (min-width: 475px) {
   .canvas {
-    max-width: 36ch;
-    padding-bottom: 32rem;
+    max-width: 40ch;
+    padding-bottom: 40rem;
   }
 }
 
