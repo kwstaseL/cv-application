@@ -17,3 +17,57 @@
   background-color: rgb(238, 238, 238);
   padding: 0.25rem;
 }
+
+.form__container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* xs */
+@media (min-width: 475px) {
+  .form__header-title {
+    font-size: var(--size-lg);
+  }
+
+  .form__label {
+    font-size: var(--size-m);
+  }
+
+  .form__input {
+    margin-bottom: 0.75rem;
+    border: 0;
+    border-radius: 8px;
+    background-color: rgb(238, 238, 238);
+    padding: 0.25rem;
+  }
+}
+
+/* sm */
+@media (min-width: 640px) {
+  .form__header-title {
+    font-size: var(--size-xl);
+  }
+
+  .form__label {
+    font-size: var(--size-lg);
+  }
+
+  .form__input {
+    padding: 0.45rem;
+  }
+}
+
+/* ls */
+@media (min-width: 1024px) {
+  .form__header-title {
+    font-size: var(--size-2xl);
+  }
+
+  .form__label {
+    font-size: var(--size-xl);
+  }
+
+  .form__input {
+    padding: 0.5rem;
+  }
+}

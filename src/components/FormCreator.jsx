@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
-
-function FormCreator({ data }) {
+import Button from "./Button";
+function FormCreator({ data, handleInputEvent }) {
+  function handleInput(e) {
+    handleInputEvent(e);
+  }
   const generateForm = () => {
     return data.map((section, sectionIndex) => (
       <div key={sectionIndex}>
         {section.fields.map((field, fieldIndex) => (
-          <div key={fieldIndex}>
+          <div key={fieldIndex} className="form__container">
             <label className="form__label" htmlFor={field.label}>
               {field.label}
             </label>
@@ -25,6 +28,7 @@ function FormCreator({ data }) {
                 name={field.label}
                 placeholder={field.placeholder}
                 className="form__input"
+                onInput={handleInput}
               ></textarea>
             ) : (
               <input
@@ -32,6 +36,7 @@ function FormCreator({ data }) {
                 id={field.label}
                 name={field.label}
                 placeholder={field.placeholder}
+                onInput={handleInput}
                 className="form__input"
               />
             )}
@@ -48,7 +53,8 @@ function FormCreator({ data }) {
   return (
     <form>
       {generateForm()}
-      <button type="submit">Submit</button>
+      <Button title="Submit" color="red" />
+      <Button title="Cancel" color="grey" />
     </form>
   );
 }

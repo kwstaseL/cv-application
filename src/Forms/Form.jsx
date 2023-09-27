@@ -14,7 +14,7 @@ const formDataMap = {
   "Work Experience": experienceDetails,
 };
 
-function Form({ title, showExtendedForm }) {
+function Form({ title, showExtendedForm, handleInputEvent }) {
   const [isExtended, setExtended] = useState(false);
   const [isFormVisible, setFormVisibility] = useState(false);
 
@@ -59,7 +59,9 @@ function Form({ title, showExtendedForm }) {
       {isExtended && showExtendedForm && (
         <ExtendedForm handleAddSectionEvent={handleAddSectionEvent} />
       )}
-      {isFormVisible && <FormCreator data={formData} />}
+      {isFormVisible && (
+        <FormCreator data={formData} handleInputEvent={handleInputEvent} />
+      )}
     </section>
   );
 }

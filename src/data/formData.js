@@ -7,36 +7,38 @@ export const personalDetailsFields = [
         input: "text",
         placeholder: "Enter your full name",
         recommended: false,
-        value: "Full Name", // Set the label as the default value
+        valueKey: "fullName",
       },
       {
         label: "Location",
         input: "text",
         placeholder: "Enter your address/country",
         recommended: true,
-        value: "Address", // Set the label as the default value
+        valueKey: "location",
       },
       {
         label: "Phone Number",
         input: "text",
         placeholder: "Enter your phone number",
         recommended: true,
-        value: "Phone Number", // Set the label as the default value
+        valueKey: "phoneNumber",
       },
       {
         label: "Email",
         input: "text",
         placeholder: "Enter your email",
         recommended: true,
-        value: "Email", // Set the label as the default value
+        valueKey: "email",
       },
       {
         label: "Professional Summary",
         input: "textarea",
+        valueKey: "professionalSummary",
       },
     ],
   },
 ];
+// constants.js
 
 export const educationDetailsFields = [
   {
@@ -44,24 +46,24 @@ export const educationDetailsFields = [
     fields: [
       {
         label: "Degree",
-        input: "Text",
+        input: "text",
         placeholder: "Enter your degree",
         recommended: true,
-        value: "Degree",
+        valueKey: "degree",
       },
       {
         label: "School/University",
         input: "text",
         placeholder: "Enter the name of the school/university",
         recommended: true,
-        value: "University",
+        valueKey: "school",
       },
       {
         label: "Major",
         input: "text",
         placeholder: "Enter your major",
         recommended: true,
-        value: "Major",
+        valueKey: "major",
       },
       {
         label: "Graduation Year",
@@ -69,21 +71,21 @@ export const educationDetailsFields = [
         placeholder: "Enter your graduation year",
         recommended: true,
         isOngoing: false,
-        value: "Graduation Year",
+        valueKey: "gradYear",
       },
       {
         label: "GPA",
         input: "text",
         placeholder: "Enter your GPA",
         optional: true,
-        value: "GPA",
+        valueKey: "gpa",
       },
       {
         label: "Honors/Awards",
         input: "text",
         placeholder: "Enter any honors or awards received",
         recommended: false,
-        value: "Honors",
+        valueKey: "honors",
       },
     ],
   },
@@ -98,42 +100,42 @@ export const experienceDetails = [
         input: "text",
         placeholder: "Enter your job title",
         recommended: true,
-        value: "job", // A meaningful default job title
+        valueKey: "jobTitle",
       },
       {
         label: "Company",
         input: "text",
         placeholder: "Enter the company name",
         recommended: true,
-        value: "company", // A meaningful default company name
+        valueKey: "company",
       },
       {
         label: "Location",
         input: "text",
         placeholder: "Enter the location (city, state)",
         recommended: true,
-        value: "location", // A meaningful default location
+        valueKey: "location",
       },
       {
         label: "Start Date",
         input: "date",
         placeholder: "Enter the start date",
         recommended: true,
-        value: "start date", // A meaningful default start date
+        valueKey: "startDate",
       },
       {
         label: "End Date",
         input: "date",
         placeholder: "Enter the end date",
         recommended: true,
-        value: "end date", // A meaningful default end date (if currently employed)
+        valueKey: "endDate",
       },
       {
         label: "Description",
         input: "textarea",
         placeholder: "Describe your responsibilities and achievements...",
         recommended: true,
-        value: "description", // A meaningful default description
+        valueKey: "description",
       },
     ],
   },

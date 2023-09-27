@@ -1,6 +1,5 @@
 .forms {
   background-color: #182037;
-
   border-radius: 8px;
   margin-bottom: 2rem;
   margin-left: 3rem;
@@ -43,10 +42,12 @@
 }
 
 /* md */
-/* @media (min-width: 768px) {} */
-
-/* ls */
-/* @media (min-width: 1024px) {} */
+@media (min-width: 768px) {
+  .forms {
+    margin-left: 9rem;
+    max-width: 50ch;
+  }
+}
 
 /* xl */
 /* @media (min-width: 1280px) {} */

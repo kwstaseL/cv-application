@@ -1,3 +1,7 @@
+.cv {
+  min-height: 100%;
+}
+
 .cv__header {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -28,8 +32,8 @@
 .cv__professional-summary {
   padding-top: 1rem;
   padding-left: 1rem;
-  font-size: var(--size-xs);
-  max-width: 25ch;
+  font-size: var(--size-3xs);
+  max-width: 40ch;
 }
 
 .cv__aside {
@@ -106,7 +110,7 @@
 
   .cv__professional-summary {
     font-size: var(--size-xs);
-    max-width: 28ch;
+    max-width: 35ch;
   }
 
   .cv__aside {
@@ -154,7 +158,7 @@
 
   .cv__professional-summary {
     font-size: var(--size-sm);
-    max-width: 28ch;
+    max-width: 35ch;
   }
 
   .cv__aside {
@@ -208,7 +212,7 @@
 
   .cv__professional-summary {
     font-size: var(--size-md);
-    max-width: 35ch;
+    max-width: 45ch;
   }
 
   .cv__aside {
@@ -257,7 +261,7 @@
 
   .cv__professional-summary {
     font-size: var(--size-lg);
-    max-width: 35ch;
+    max-width: 45ch;
   }
 
   .cv__aside {
