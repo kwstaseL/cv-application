@@ -11,6 +11,9 @@ function App() {
     name: "",
     role: "",
     professionalSummary: "",
+    phoneNumber: "",
+    email: "",
+    location: "",
     experience: [],
     education: [],
   };
@@ -57,10 +60,10 @@ function App() {
       } else if (index === availableNames.EXPERIENCE) {
         // Create a new experience entry object
         const newExperienceEntry = {
-          date: "YYYY-MM-DD",
-          position: "New Position",
-          location: "New Location",
-          description: "New Description",
+          date: "",
+          position: "",
+          location: "",
+          description: "",
         };
 
         // Append the new experience entry to the existing experience array

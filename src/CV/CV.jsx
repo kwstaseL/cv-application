@@ -56,6 +56,20 @@ function CV({ cvData, sectionsAdded }) {
         </section>
         <aside className="cv__aside">
           <h1 className="cv__aside-title">Personal Info</h1>
+          <ul className="cv__aside-list">
+            <li className="cv__aside-entry">
+              <h1 className="cv__aside-entry-title">Phone</h1>
+              <h1 className="cv__aside-entry-value">{cvData.phoneNumber}</h1>
+            </li>
+            <li className="cv__aside-entry">
+              <h1 className="cv__aside-entry-title">E-mail</h1>
+              <h1 className="cv__aside-entry-value">{cvData.email}</h1>
+            </li>
+            <li className="cv__aside-entry">
+              <h1 className="cv__aside-entry-title">Address</h1>
+              <h1 className="cv__aside-entry-value">{cvData.location}</h1>
+            </li>
+          </ul>
         </aside>
       </main>
     </section>

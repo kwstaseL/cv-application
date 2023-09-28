@@ -3,8 +3,10 @@
   background-color: #fff;
   color: black;
   max-width: 30ch;
-  padding-bottom: 35rem;
   max-height: 65ch;
+  display: flex;
+  flex-direction: column; /* Ensure it's a vertical flex container */
+  overflow: hidden;
 }
 
 /* xs */
