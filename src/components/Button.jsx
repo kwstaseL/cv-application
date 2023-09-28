@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+// Common component for Buttons
 function Button({ title, color, handleOptionsClick }) {
   const buttonStyle = {
     backgroundColor: color,

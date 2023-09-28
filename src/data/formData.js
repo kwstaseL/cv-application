@@ -1,3 +1,5 @@
+// constants.js
+
 export const personalDetailsFields = [
   {
     title: "Personal Details",
@@ -6,8 +8,13 @@ export const personalDetailsFields = [
         label: "Full Name",
         input: "text",
         placeholder: "Enter your full name",
-        recommended: false,
-        valueKey: "fullName",
+        valueKey: "name", // Updated valueKey to match cvData key
+      },
+      {
+        label: "Role",
+        input: "text",
+        placeholder: "Enter your proficiency",
+        valueKey: "role",
       },
       {
         label: "Location",
@@ -34,23 +41,16 @@ export const personalDetailsFields = [
         label: "Professional Summary",
         input: "textarea",
         valueKey: "professionalSummary",
+        recommended: true,
       },
     ],
   },
 ];
-// constants.js
 
 export const educationDetailsFields = [
   {
     title: "Education Details",
     fields: [
-      {
-        label: "Degree",
-        input: "text",
-        placeholder: "Enter your degree",
-        recommended: true,
-        valueKey: "degree",
-      },
       {
         label: "School/University",
         input: "text",
@@ -100,7 +100,7 @@ export const experienceDetails = [
         input: "text",
         placeholder: "Enter your job title",
         recommended: true,
-        valueKey: "jobTitle",
+        valueKey: "position", // Updated valueKey to match cvData key
       },
       {
         label: "Company",
@@ -121,14 +121,14 @@ export const experienceDetails = [
         input: "date",
         placeholder: "Enter the start date",
         recommended: true,
-        valueKey: "startDate",
+        valueKey: "startDate", // Updated valueKey to match cvData key
       },
       {
         label: "End Date",
         input: "date",
         placeholder: "Enter the end date",
         recommended: true,
-        valueKey: "endDate",
+        valueKey: "endDate", // Updated valueKey to match cvData key
       },
       {
         label: "Description",

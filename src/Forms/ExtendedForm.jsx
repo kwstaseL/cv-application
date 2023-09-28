@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import "./ExtendedForm.css";
 import Button from "../components/Button";
+
 function ExtendedForm({ handleAddSectionEvent }) {
   return (
-    <section>
+    <section className="extended__section">
       <Button
         title="Add section"
-        className="btn"
+        color="red"
         handleOptionsClick={handleAddSectionEvent}
       />
     </section>

@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import Button from "./Button";
-function FormCreator({ data, handleInputEvent }) {
-  function handleInput(e) {
-    handleInputEvent(e);
+
+// Form Creator is the factory that creates and returns the form
+function FormCreator({ data, handleInputEvent, parent }) {
+  function handleInput(e, field) {
+    handleInputEvent(field, e.target.value, parent);
   }
   const generateForm = () => {
     return data.map((section, sectionIndex) => (
@@ -28,7 +30,8 @@ function FormCreator({ data, handleInputEvent }) {
                 name={field.label}
                 placeholder={field.placeholder}
                 className="form__input"
-                onInput={handleInput}
+                valueKey={field.valueKey}
+                onInput={(e) => handleInput(e, field)}
               ></textarea>
             ) : (
               <input
@@ -36,7 +39,8 @@ function FormCreator({ data, handleInputEvent }) {
                 id={field.label}
                 name={field.label}
                 placeholder={field.placeholder}
-                onInput={handleInput}
+                valueKey={field.valueKey}
+                onInput={(e) => handleInput(e, field)}
                 className="form__input"
               />
             )}

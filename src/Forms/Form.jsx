@@ -7,6 +7,7 @@ import {
   experienceDetails,
   educationDetailsFields,
 } from "../data/formData";
+import { addMapping, getKey } from "../misc/NamingRegistry";
 
 const formDataMap = {
   "General Information": personalDetailsFields,
@@ -14,7 +15,12 @@ const formDataMap = {
   "Work Experience": experienceDetails,
 };
 
-function Form({ title, showExtendedForm, handleInputEvent }) {
+function Form({
+  title,
+  showExtendedForm,
+  handleInputEvent,
+  handleSectionAddition,
+}) {
   const [isExtended, setExtended] = useState(false);
   const [isFormVisible, setFormVisibility] = useState(false);
 
@@ -32,6 +38,11 @@ function Form({ title, showExtendedForm, handleInputEvent }) {
   function handleAddSectionEvent() {
     setFormVisibility(!isFormVisible);
     setExtended(!isExtended);
+
+    if (getKey(title) == undefined) {
+      addMapping(title);
+    }
+    handleSectionAddition(title);
   }
   const formData = formDataMap[title] || [];
 
@@ -60,7 +71,11 @@ function Form({ title, showExtendedForm, handleInputEvent }) {
         <ExtendedForm handleAddSectionEvent={handleAddSectionEvent} />
       )}
       {isFormVisible && (
-        <FormCreator data={formData} handleInputEvent={handleInputEvent} />
+        <FormCreator
+          data={formData}
+          handleInputEvent={handleInputEvent}
+          parent={title}
+        />
       )}
     </section>
   );
