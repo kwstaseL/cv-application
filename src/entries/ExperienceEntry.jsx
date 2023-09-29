@@ -11,13 +11,20 @@ function ExperienceEntry({
     <li className="cv__experience-entry">
       <div className="cv__experience-date">
         <h1 className="cv__experience-date-value main__date">
-          {startDate} / {endDate}
+          {startDate}
+          {endDate && (
+            <span>
+              {" "}
+              <br></br>/ {endDate}
+            </span>
+          )}
         </h1>
       </div>
       <div className="cv_experience__info">
         <h1 className="cv_experience-position main__position">{position}</h1>
         <p className="cv__experience-location main__location">
-          {company}, {location}
+          {company}
+          {location && <span>, {location}</span>}
         </p>
         <p className="cv__experience-description main__description">
           {description}

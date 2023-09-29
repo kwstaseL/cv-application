@@ -20,19 +20,20 @@ function Form({
   showExtendedForm,
   handleInputEvent,
   handleSectionAddition,
+  handleCancelForm,
 }) {
   const [isExtended, setExtended] = useState(false);
   const [isFormVisible, setFormVisibility] = useState(false);
 
   function handleArrowEvent() {
-    if (showExtendedForm) {
-      setExtended(!isExtended);
-      if (isFormVisible) {
-        setFormVisibility(!isFormVisible);
-      }
-    } else {
+    if (!showExtendedForm) {
       setFormVisibility(!isFormVisible);
+      return;
     }
+    // Show extended form is on
+    isFormVisible
+      ? setFormVisibility(!isFormVisible)
+      : setExtended(!isExtended);
   }
 
   function handleAddSectionEvent() {
@@ -43,6 +44,11 @@ function Form({
       addMapping(title);
     }
     handleSectionAddition(title);
+  }
+
+  function cancelForm(section) {
+    handleArrowEvent();
+    handleCancelForm(section);
   }
   const formData = formDataMap[title] || [];
 
@@ -75,6 +81,7 @@ function Form({
           data={formData}
           handleInputEvent={handleInputEvent}
           parent={title}
+          handleCancelForm={cancelForm}
         />
       )}
     </section>

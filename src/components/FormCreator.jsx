@@ -2,23 +2,26 @@
 import Button from "./Button";
 
 // Form Creator is the factory that creates and returns the form
-function FormCreator({ data, handleInputEvent, parent }) {
+function FormCreator({ data, handleInputEvent, parent, handleCancelForm }) {
   function handleInput(e, field) {
     handleInputEvent(field, e.target.value, parent);
   }
+  function submitForm() {}
   const generateForm = () => {
     return data.map((section, sectionIndex) => (
       <div key={sectionIndex}>
         {section.fields.map((field, fieldIndex) => (
           <div key={fieldIndex} className="form__container">
-            <label className="form__label" htmlFor={field.label}>
-              {field.label}
-            </label>
-            {field.recommended && (
-              <span className="optional-field" style={{ color: "red" }}>
-                *
-              </span>
-            )}
+            <div className="form__label-header">
+              <label className="form__label" htmlFor={field.label}>
+                {field.label}
+              </label>
+              {field.recommended && (
+                <span className="optional-field" style={{ color: "red" }}>
+                  *
+                </span>
+              )}
+            </div>
             {field.optional && (
               <span className="optional-field" style={{ marginLeft: "0.5rem" }}>
                 (Optional)
@@ -57,8 +60,19 @@ function FormCreator({ data, handleInputEvent, parent }) {
   return (
     <form>
       {generateForm()}
-      <Button title="Submit" color="red" />
-      <Button title="Cancel" color="grey" />
+      {/* TODO: Fix this condition statement*/}
+      <div className="action-buttons">
+        {parent != "General Information" && (
+          <Button title="Submit" color="red" onClick={submitForm} />
+        )}
+        {parent != "General Information" && (
+          <Button
+            title="Cancel"
+            color="grey"
+            onClick={() => handleCancelForm(parent)}
+          />
+        )}
+      </div>
     </form>
   );
 }

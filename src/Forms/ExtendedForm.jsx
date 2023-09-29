@@ -5,11 +5,7 @@ import Button from "../components/Button";
 function ExtendedForm({ handleAddSectionEvent }) {
   return (
     <section className="extended__section">
-      <Button
-        title="Add section"
-        color="red"
-        handleOptionsClick={handleAddSectionEvent}
-      />
+      <Button title="Add section" color="red" onClick={handleAddSectionEvent} />
     </section>
   );
 }

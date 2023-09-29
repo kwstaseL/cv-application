@@ -23,6 +23,11 @@
   flex-direction: column;
 }
 
+.action-buttons:nth-child(2) {
+  display: flex;
+  justify-content: space-around;
+}
+
 /* xs */
 @media (min-width: 475px) {
   .form__header-title {

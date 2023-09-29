@@ -7,10 +7,14 @@ import { availableNames } from "../misc/NamingRegistry";
 function CV({ cvData, sectionsAdded }) {
   return (
     <section className="cv">
-      <header className="cv__header">
+      <header
+        className="cv__header"
+        style={{ paddingBottom: cvData.name || cvData.role ? "1rem" : "3rem" }}
+      >
         <h1 className="cv__name">{cvData.name}</h1>
         <h1 className="cv__role">{cvData.role}</h1>
       </header>
+
       <main className="cv__main">
         <section className="main__content">
           <p className="cv__professional-summary">
@@ -58,15 +62,21 @@ function CV({ cvData, sectionsAdded }) {
           <h1 className="cv__aside-title">Personal Info</h1>
           <ul className="cv__aside-list">
             <li className="cv__aside-entry">
-              <h1 className="cv__aside-entry-title">Phone</h1>
+              {cvData.phoneNumber && (
+                <h1 className="cv__aside-entry-title">Phone</h1>
+              )}
               <h1 className="cv__aside-entry-value">{cvData.phoneNumber}</h1>
             </li>
             <li className="cv__aside-entry">
-              <h1 className="cv__aside-entry-title">E-mail</h1>
+              {cvData.email && (
+                <h1 className="cv__aside-entry-title">E-mail</h1>
+              )}
               <h1 className="cv__aside-entry-value">{cvData.email}</h1>
             </li>
             <li className="cv__aside-entry">
-              <h1 className="cv__aside-entry-title">Address</h1>
+              {cvData.location && (
+                <h1 className="cv__aside-entry-title">Address</h1>
+              )}
               <h1 className="cv__aside-entry-value">{cvData.location}</h1>
             </li>
           </ul>

@@ -21,14 +21,26 @@ function App() {
   const [cvData, setCVData] = useState(initialCVData);
   const [sectionsAdded, setSectionAdded] = useState([false, false]);
 
-  function handleInputEvent(form, text, parent) {
+  function handleInputEvent(form, text, section) {
     const { valueKey } = form;
     const updatedCVData = { ...cvData };
-    const data = updateRelatedSection(parent, text, updatedCVData, valueKey);
+    const data = updateRelatedSection(section, text, updatedCVData, valueKey);
     setCVData(data);
   }
 
+  function handleCancelForm(section) {
+    const updatedCVData = { ...cvData };
+    const index = findBestMatch(section, availableNames);
+    if (index === availableNames.EDUCATION) {
+      updatedCVData.education.pop();
+    } else if (index === availableNames.EXPERIENCE) {
+      updatedCVData.experience.pop();
+    }
+    setCVData(updatedCVData);
+  }
+
   function handleSectionAddition(text) {
+    // Receiving the index based on the text ("Education","Experience");
     const index = getKey(text);
     if (index !== undefined && index >= 0 && index < sectionsAdded.length) {
       const updatedSectionsAdded = [...sectionsAdded];
@@ -60,7 +72,7 @@ function App() {
       } else if (index === availableNames.EXPERIENCE) {
         // Create a new experience entry object
         const newExperienceEntry = {
-          date: "",
+          date: "fd",
           position: "",
           location: "",
           description: "",
@@ -87,13 +99,14 @@ function App() {
 
     if (index === availableNames.EDUCATION) {
       // Update education section
-      console.log(cvData.education[0]);
-      console.log(valueKey);
-      console.log(cvData.education[0][valueKey]);
-      cvData.education[0][valueKey] = text;
+      // Updating the last entry entered
+      const lastSectionIndex = cvData.education.length - 1;
+      cvData.education[lastSectionIndex][valueKey] = text;
     } else if (index === availableNames.EXPERIENCE) {
       // Update experience section
-      cvData.experience[0][valueKey] = text;
+      // Updating the last entry entered
+      const lastSectionIndex = cvData.experience.length - 1;
+      cvData.experience[lastSectionIndex][valueKey] = text;
     } else {
       // Update personal info
       cvData[valueKey] = text;
@@ -113,6 +126,7 @@ function App() {
           <Forms
             handleInputEvent={handleInputEvent}
             handleSectionAddition={handleSectionAddition}
+            handleCancelForm={handleCancelForm}
           />
         </section>
       </main>
