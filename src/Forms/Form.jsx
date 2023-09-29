@@ -27,6 +27,8 @@ function Form({
   const [isExtended, setExtended] = useState(false);
   const [isFormVisible, setFormVisibility] = useState(false);
 
+  // Receives a label ("Experience" title section or "Education" title section)
+  // and maps it to a constant enum variable for comparisson reasons.
   function findSection(string) {
     return getKey(string);
   }
@@ -105,6 +107,7 @@ function Form({
           manageInputEvent={manageInputEvent}
           sectionName={title}
           manageCancelForm={manageCancelForm}
+          cvData={data}
         />
       )}
     </section>

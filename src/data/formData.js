@@ -8,7 +8,7 @@ export const personalDetailsFields = [
         label: "Full Name",
         input: "text",
         placeholder: "Enter your full name",
-        valueKey: "name", // Updated valueKey to match cvData key
+        valueKey: "name",
       },
       {
         label: "Role",

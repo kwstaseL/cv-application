@@ -8,7 +8,7 @@ function ExtendedForm({ manageAddSectionEvent, data, manageDeleteForm }) {
     <section className="extended__section">
       <ul className="extended__section-list">
         {data.map((item, index) =>
-          item.hasOwnProperty("school") ? (
+          item.hasOwnProperty("schoolName") ? (
             <ItemForm
               key={index}
               id={item.id}

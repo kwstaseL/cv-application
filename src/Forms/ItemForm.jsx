@@ -2,7 +2,7 @@ function ItemForm({ title, id, onDelete }) {
   return (
     <li className="extended__section-entry">
       {/* title */}
-      <h1>{title}</h1>
+      <h1>{title === "" ? "Blank" : title}</h1>
       <button>
         <svg
           xmlns="http://www.w3.org/2000/svg"

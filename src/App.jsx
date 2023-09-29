@@ -41,10 +41,16 @@ function App() {
 
   function handleCancelForm(sectionLabel) {
     const updatedCVData = { ...cvData };
+    let sectionLength;
     if (sectionLabel === availableNames.EDUCATION) {
       updatedCVData.education.pop();
+      sectionLength = updatedCVData.education.length;
     } else if (sectionLabel === availableNames.EXPERIENCE) {
       updatedCVData.experience.pop();
+      sectionLength = updatedCVData.experience.length;
+    }
+    if (sectionLength === 0) {
+      removeSectionLabel(sectionLabel);
     }
     setCVData(updatedCVData);
   }
@@ -107,22 +113,32 @@ function App() {
 
   function handleDeleteForm(id, sectionLabel) {
     const updatedCVData = { ...cvData };
-
+    let sectionLength;
     if (sectionLabel === availableNames.EDUCATION) {
       // Filter out the form with the specified ID from the education array
       const updatedEducation = cvData.education.filter(
         (entry) => entry.id !== id
       );
       updatedCVData.education = updatedEducation;
+      sectionLength = updatedCVData.education.length;
     } else if (sectionLabel === availableNames.EXPERIENCE) {
       // Filter out the form with the specified ID from the experience array
       const updatedExperience = cvData.experience.filter(
         (entry) => entry.id !== id
       );
       updatedCVData.experience = updatedExperience;
+      sectionLength = updatedCVData.experience.length;
+    }
+    if (sectionLength === 0) {
+      removeSectionLabel(sectionLabel);
     }
 
     setCVData(updatedCVData);
+  }
+  function removeSectionLabel(label) {
+    const updatedSections = [...sectionsAdded];
+    updatedSections[label] = false;
+    setSectionAdded(updatedSections);
   }
 
   return (

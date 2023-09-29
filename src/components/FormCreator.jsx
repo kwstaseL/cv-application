@@ -7,6 +7,7 @@ function FormCreator({
   manageInputEvent,
   sectionName,
   manageCancelForm,
+  cvData,
 }) {
   function manageInput(e, field) {
     manageInputEvent(field, e.target.value, sectionName);
@@ -39,6 +40,7 @@ function FormCreator({
                 placeholder={field.placeholder}
                 className="form__input"
                 valueKey={field.valueKey}
+                value={cvData[field.valueKey]}
                 onInput={(e) => manageInput(e, field)}
               ></textarea>
             ) : (
@@ -48,6 +50,7 @@ function FormCreator({
                 name={field.label}
                 placeholder={field.placeholder}
                 valueKey={field.valueKey}
+                value={cvData[field.valueKey]}
                 onInput={(e) => manageInput(e, field)}
                 className="form__input"
               />

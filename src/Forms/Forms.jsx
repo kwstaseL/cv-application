@@ -14,15 +14,7 @@ function Forms({
         showExtendedForm={false}
         handleInputEvent={handleInputEvent}
         handleSectionAddition={handleSectionAddition}
-      />
-      <Form
-        title="Education"
-        showExtendedForm={true}
-        handleInputEvent={handleInputEvent}
-        handleSectionAddition={handleSectionAddition}
-        handleCancelForm={handleCancelForm}
-        handleDeleteForm={handleDeleteForm}
-        data={data.education}
+        data={data}
       />
       <Form
         title="Work Experience"
@@ -32,6 +24,15 @@ function Forms({
         handleCancelForm={handleCancelForm}
         handleDeleteForm={handleDeleteForm}
         data={data.experience}
+      />
+      <Form
+        title="Education"
+        showExtendedForm={true}
+        handleInputEvent={handleInputEvent}
+        handleSectionAddition={handleSectionAddition}
+        handleCancelForm={handleCancelForm}
+        handleDeleteForm={handleDeleteForm}
+        data={data.education}
       />
     </section>
   );
