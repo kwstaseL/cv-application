@@ -4,3 +4,25 @@
   flex-direction: column;
   align-items: center;
 }
+
+.extended__section-list {
+  padding: 1rem;
+}
+
+.extended__section-entry {
+  margin-bottom: 1rem;
+  font-size: var(--size-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: rgba(42, 44, 158, 0.342);
+  border-radius: 8px;
+}
+
+.action-icon {
+  width: var(--size-xl);
+}

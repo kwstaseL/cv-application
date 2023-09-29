@@ -2,11 +2,10 @@ import { useState } from "react";
 import "../styles/App.css";
 import Canvas from "./Canvas/Canvas";
 import Forms from "./Forms/Forms";
-import { availableNames, getKey } from "../src/misc/NamingRegistry";
-import { findBestMatch } from "./utils/findBestMatch";
+import { availableNames } from "../src/misc/NamingRegistry";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
-  // Create a sample cvData object
   const initialCVData = {
     name: "",
     role: "",
@@ -21,27 +20,37 @@ function App() {
   const [cvData, setCVData] = useState(initialCVData);
   const [sectionsAdded, setSectionAdded] = useState([false, false]);
 
-  function handleInputEvent(form, text, section) {
-    const { valueKey } = form;
+  function handleInputEvent(valueKey, sectionLabel, text) {
     const updatedCVData = { ...cvData };
-    const data = updateRelatedSection(section, text, updatedCVData, valueKey);
-    setCVData(data);
+    if (sectionLabel === availableNames.EDUCATION) {
+      // Update education section
+      // Updating the last entry entered
+      const lastSectionIndex = cvData.education.length - 1;
+      updatedCVData.education[lastSectionIndex][valueKey] = text;
+    } else if (sectionLabel === availableNames.EXPERIENCE) {
+      // Update experience section
+      // Updating the last entry entered
+      const lastSectionIndex = cvData.experience.length - 1;
+      updatedCVData.experience[lastSectionIndex][valueKey] = text;
+    } else {
+      // Update personal info
+      updatedCVData[valueKey] = text;
+    }
+    setCVData(updatedCVData);
   }
 
-  function handleCancelForm(section) {
+  function handleCancelForm(sectionLabel) {
     const updatedCVData = { ...cvData };
-    const index = findBestMatch(section, availableNames);
-    if (index === availableNames.EDUCATION) {
+    if (sectionLabel === availableNames.EDUCATION) {
       updatedCVData.education.pop();
-    } else if (index === availableNames.EXPERIENCE) {
+    } else if (sectionLabel === availableNames.EXPERIENCE) {
       updatedCVData.experience.pop();
     }
     setCVData(updatedCVData);
   }
 
-  function handleSectionAddition(text) {
+  function handleSectionAddition(index) {
     // Receiving the index based on the text ("Education","Experience");
-    const index = getKey(text);
     if (index !== undefined && index >= 0 && index < sectionsAdded.length) {
       const updatedSectionsAdded = [...sectionsAdded];
       updatedSectionsAdded[index] = true;
@@ -57,6 +66,7 @@ function App() {
           major: "",
           location: "",
           gpa: "",
+          id: uuidv4(),
         };
 
         // Append the new education entry to the existing education array
@@ -72,10 +82,11 @@ function App() {
       } else if (index === availableNames.EXPERIENCE) {
         // Create a new experience entry object
         const newExperienceEntry = {
-          date: "fd",
+          date: "",
           position: "",
           location: "",
           description: "",
+          id: uuidv4(),
         };
 
         // Append the new experience entry to the existing experience array
@@ -94,25 +105,24 @@ function App() {
     }
   }
 
-  function updateRelatedSection(parent, text, cvData, valueKey) {
-    const index = findBestMatch(parent, availableNames);
+  function handleDeleteForm(id, sectionLabel) {
+    const updatedCVData = { ...cvData };
 
-    if (index === availableNames.EDUCATION) {
-      // Update education section
-      // Updating the last entry entered
-      const lastSectionIndex = cvData.education.length - 1;
-      cvData.education[lastSectionIndex][valueKey] = text;
-    } else if (index === availableNames.EXPERIENCE) {
-      // Update experience section
-      // Updating the last entry entered
-      const lastSectionIndex = cvData.experience.length - 1;
-      cvData.experience[lastSectionIndex][valueKey] = text;
-    } else {
-      // Update personal info
-      cvData[valueKey] = text;
+    if (sectionLabel === availableNames.EDUCATION) {
+      // Filter out the form with the specified ID from the education array
+      const updatedEducation = cvData.education.filter(
+        (entry) => entry.id !== id
+      );
+      updatedCVData.education = updatedEducation;
+    } else if (sectionLabel === availableNames.EXPERIENCE) {
+      // Filter out the form with the specified ID from the experience array
+      const updatedExperience = cvData.experience.filter(
+        (entry) => entry.id !== id
+      );
+      updatedCVData.experience = updatedExperience;
     }
-    // Return the modified cvData
-    return cvData;
+
+    setCVData(updatedCVData);
   }
 
   return (
@@ -127,6 +137,8 @@ function App() {
             handleInputEvent={handleInputEvent}
             handleSectionAddition={handleSectionAddition}
             handleCancelForm={handleCancelForm}
+            data={cvData}
+            handleDeleteForm={handleDeleteForm}
           />
         </section>
       </main>

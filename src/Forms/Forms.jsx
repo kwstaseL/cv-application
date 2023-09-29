@@ -1,6 +1,12 @@
 import Form from "./Form";
 import "./Forms.css";
-function Forms({ handleInputEvent, handleSectionAddition, handleCancelForm }) {
+function Forms({
+  handleInputEvent,
+  handleSectionAddition,
+  handleCancelForm,
+  data,
+  handleDeleteForm,
+}) {
   return (
     <section className="forms content-container section">
       <Form
@@ -15,6 +21,8 @@ function Forms({ handleInputEvent, handleSectionAddition, handleCancelForm }) {
         handleInputEvent={handleInputEvent}
         handleSectionAddition={handleSectionAddition}
         handleCancelForm={handleCancelForm}
+        handleDeleteForm={handleDeleteForm}
+        data={data.education}
       />
       <Form
         title="Work Experience"
@@ -22,6 +30,8 @@ function Forms({ handleInputEvent, handleSectionAddition, handleCancelForm }) {
         handleInputEvent={handleInputEvent}
         handleSectionAddition={handleSectionAddition}
         handleCancelForm={handleCancelForm}
+        handleDeleteForm={handleDeleteForm}
+        data={data.experience}
       />
     </section>
   );

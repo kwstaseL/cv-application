@@ -2,9 +2,14 @@
 import Button from "./Button";
 
 // Form Creator is the factory that creates and returns the form
-function FormCreator({ data, handleInputEvent, parent, handleCancelForm }) {
-  function handleInput(e, field) {
-    handleInputEvent(field, e.target.value, parent);
+function FormCreator({
+  data,
+  manageInputEvent,
+  sectionName,
+  manageCancelForm,
+}) {
+  function manageInput(e, field) {
+    manageInputEvent(field, e.target.value, sectionName);
   }
   function submitForm() {}
   const generateForm = () => {
@@ -34,7 +39,7 @@ function FormCreator({ data, handleInputEvent, parent, handleCancelForm }) {
                 placeholder={field.placeholder}
                 className="form__input"
                 valueKey={field.valueKey}
-                onInput={(e) => handleInput(e, field)}
+                onInput={(e) => manageInput(e, field)}
               ></textarea>
             ) : (
               <input
@@ -43,7 +48,7 @@ function FormCreator({ data, handleInputEvent, parent, handleCancelForm }) {
                 name={field.label}
                 placeholder={field.placeholder}
                 valueKey={field.valueKey}
-                onInput={(e) => handleInput(e, field)}
+                onInput={(e) => manageInput(e, field)}
                 className="form__input"
               />
             )}
@@ -62,14 +67,14 @@ function FormCreator({ data, handleInputEvent, parent, handleCancelForm }) {
       {generateForm()}
       {/* TODO: Fix this condition statement*/}
       <div className="action-buttons">
-        {parent != "General Information" && (
+        {sectionName != "General Information" && (
           <Button title="Submit" color="red" onClick={submitForm} />
         )}
-        {parent != "General Information" && (
+        {sectionName != "General Information" && (
           <Button
             title="Cancel"
             color="grey"
-            onClick={() => handleCancelForm(parent)}
+            onClick={() => manageCancelForm(sectionName)}
           />
         )}
       </div>

@@ -21,9 +21,15 @@ function Form({
   handleInputEvent,
   handleSectionAddition,
   handleCancelForm,
+  handleDeleteForm,
+  data,
 }) {
   const [isExtended, setExtended] = useState(false);
   const [isFormVisible, setFormVisibility] = useState(false);
+
+  function findSection(string) {
+    return getKey(string);
+  }
 
   function handleArrowEvent() {
     if (!showExtendedForm) {
@@ -36,19 +42,32 @@ function Form({
       : setExtended(!isExtended);
   }
 
-  function handleAddSectionEvent() {
+  function manageAddSectionEvent() {
     setFormVisibility(!isFormVisible);
     setExtended(!isExtended);
 
-    if (getKey(title) == undefined) {
+    if (findSection(title) == undefined) {
       addMapping(title);
     }
-    handleSectionAddition(title);
+    const index = findSection(title);
+    handleSectionAddition(index);
   }
 
-  function cancelForm(section) {
+  function manageInputEvent(form, text, sectionName) {
+    const { valueKey } = form;
+    const sectionLabel = findSection(sectionName);
+    handleInputEvent(valueKey, sectionLabel, text);
+  }
+
+  function manageCancelForm(sectionLabel) {
     handleArrowEvent();
-    handleCancelForm(section);
+    const index = findSection(sectionLabel);
+    handleCancelForm(index);
+  }
+
+  function manageDeleteForm(id) {
+    const sectionLabel = findSection(title);
+    handleDeleteForm(id, sectionLabel);
   }
   const formData = formDataMap[title] || [];
 
@@ -74,14 +93,18 @@ function Form({
         </button>
       </div>
       {isExtended && showExtendedForm && (
-        <ExtendedForm handleAddSectionEvent={handleAddSectionEvent} />
+        <ExtendedForm
+          manageAddSectionEvent={manageAddSectionEvent}
+          manageDeleteForm={manageDeleteForm}
+          data={data}
+        />
       )}
       {isFormVisible && (
         <FormCreator
           data={formData}
-          handleInputEvent={handleInputEvent}
-          parent={title}
-          handleCancelForm={cancelForm}
+          manageInputEvent={manageInputEvent}
+          sectionName={title}
+          manageCancelForm={manageCancelForm}
         />
       )}
     </section>
