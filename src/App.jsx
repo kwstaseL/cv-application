@@ -4,6 +4,9 @@ import Canvas from "./Canvas/Canvas";
 import Forms from "./Forms/Forms";
 import { availableNames } from "../src/misc/NamingRegistry";
 import { v4 as uuidv4 } from "uuid";
+import Options from "./Options/Options";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 function App() {
   const initialCVData = {
@@ -191,10 +194,30 @@ function App() {
     setIdSelected(null); // Reset idSelected to null
   }
 
+  // Options event listeners
+
+  function onClear() {
+    setCVData(initialCVData);
+    resetEditState();
+  }
+
+  function onSave() {
+    const capture = document.querySelector(".cv");
+    html2canvas(capture).then((canvas) => {
+      const imgData = canvas.toDataURL("img/png");
+      const doc = new jsPDF("p", "mm", "a4");
+      const componentWidth = doc.internal.pageSize.getWidth();
+      const componentHeight = doc.internal.pageSize.getHeight();
+      doc.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
+      doc.save("cv.pdf");
+    });
+  }
+
   return (
     <>
       <main className="main">
         <section className="upper container">
+          <Options onClear={onClear} onSave={onSave} />
           <Canvas cvData={cvData} sectionsAdded={sectionsAdded} />{" "}
           {/* Pass cvData to Canvas */}
         </section>
