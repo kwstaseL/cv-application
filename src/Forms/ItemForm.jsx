@@ -1,9 +1,9 @@
-function ItemForm({ title, id, onDelete }) {
+function ItemForm({ title, id, onDelete, onEdit }) {
   return (
     <li className="extended__section-entry">
       {/* title */}
-      <h1>{title === "" ? "Blank" : title}</h1>
-      <button>
+      <h1>{title === "" || title === " " ? "Blank" : title}</h1>
+      <button onClick={() => onEdit(id)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

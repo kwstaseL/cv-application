@@ -22,6 +22,8 @@ function Form({
   handleSectionAddition,
   handleCancelForm,
   handleDeleteForm,
+  handleEditEvent,
+  handleSubmitEvent,
   data,
 }) {
   const [isExtended, setExtended] = useState(false);
@@ -38,10 +40,15 @@ function Form({
       setFormVisibility(!isFormVisible);
       return;
     }
-    // Show extended form is on
     isFormVisible
       ? setFormVisibility(!isFormVisible)
       : setExtended(!isExtended);
+  }
+
+  function manageSubmitClick(e) {
+    e.preventDefault();
+    setFormVisibility(!isFormVisible);
+    handleSubmitEvent();
   }
 
   function manageAddSectionEvent() {
@@ -71,6 +78,14 @@ function Form({
     const sectionLabel = findSection(title);
     handleDeleteForm(id, sectionLabel);
   }
+
+  function manageEditEvent(id) {
+    const sectionLabel = findSection(title);
+    handleEditEvent(id, sectionLabel);
+    setFormVisibility(!isFormVisible);
+    setExtended(!isExtended);
+  }
+
   const formData = formDataMap[title] || [];
 
   return (
@@ -98,6 +113,7 @@ function Form({
         <ExtendedForm
           manageAddSectionEvent={manageAddSectionEvent}
           manageDeleteForm={manageDeleteForm}
+          manageEditEvent={manageEditEvent}
           data={data}
         />
       )}
@@ -105,8 +121,9 @@ function Form({
         <FormCreator
           data={formData}
           manageInputEvent={manageInputEvent}
-          sectionName={title}
           manageCancelForm={manageCancelForm}
+          manageSubmitClick={manageSubmitClick}
+          sectionName={title}
           cvData={data}
         />
       )}

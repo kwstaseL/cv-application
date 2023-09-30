@@ -14,6 +14,8 @@
 
 .cv__name {
   font-size: var(--size-xs);
+  max-width: 35ch;
+  overflow: hidden;
   color: white;
 }
 
@@ -21,6 +23,8 @@
   margin-top: 0.1rem;
   font-size: var(--size-4xs);
   font-weight: lighter;
+  max-width: 65ch;
+  overflow: hidden;
   color: rgb(162, 156, 156);
 }
 
@@ -33,9 +37,12 @@
 }
 
 .cv__professional-summary {
+  margin-top: 1rem;
   padding-top: 1rem;
   padding-left: 1rem;
   font-size: var(--size-3xs);
+  max-width: 50ch;
+  word-wrap: break-word;
 }
 
 .cv__aside {
@@ -95,14 +102,20 @@
 
 .main__position {
   font-size: var(--size-xxs);
+  max-width: 20ch;
+  word-wrap: break-word;
 }
 
 .main__location {
   font-size: var(--size-xxs);
+  max-width: 20ch;
+  word-wrap: break-word;
 }
 
 .main__description {
   font-size: var(--size-xxs);
+  max-width: 30ch;
+  word-wrap: break-word;
 }
 
 /* Common styles */
@@ -188,11 +201,13 @@
 @media (min-width: 640px) {
   .cv__name {
     font-size: var(--size-md);
+    max-width: 42ch;
     color: white;
   }
 
   .cv__role {
     font-size: var(--size-xs);
+    max-width: 55ch;
   }
 
   /* Main */
@@ -242,11 +257,13 @@
 @media (min-width: 768px) {
   .cv__name {
     font-size: var(--size-lg);
+    max-width: 55ch;
     color: white;
   }
 
   .cv__role {
     font-size: var(--size-sm);
+    max-width: 70ch;
   }
 
   /* Main */
@@ -270,14 +287,17 @@
 
   .main__position {
     font-size: var(--size-base);
+    max-width: 35ch;
   }
 
   .main__location {
     font-size: var(--size-base);
+    max-width: 35ch;
   }
 
   .main__description {
     font-size: var(--size-base);
+    max-width: 40ch;
   }
 
   .cv__aside {
@@ -323,7 +343,7 @@
 
   .cv__professional-summary {
     font-size: var(--size-lg);
-    max-width: 45ch;
+    max-width: 55ch;
   }
 
   .cv__aside {
@@ -345,16 +365,18 @@
 
   .main__position {
     font-size: var(--size-lg);
+    max-width: 50ch;
   }
 
   .main__location {
     font-size: var(--size-lg);
+    max-width: 50ch;
   }
 
   .main__description {
     font-size: var(--size-lg);
+    max-width: 50ch;
   }
-
   /* Common styles */
 
   .section__title {

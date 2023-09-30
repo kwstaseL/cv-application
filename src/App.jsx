@@ -16,129 +16,179 @@ function App() {
     experience: [],
     education: [],
   };
+  // Original data of a section, saved to be restored when the user presses Cancel while Editing
+  const [originalData, setOriginalData] = useState(null);
+
+  const [isEditing, setIsEditing] = useState(false); // Initialize isEditing state
+  const [idSelected, setIdSelected] = useState(null); // Initialize idSelected state
 
   const [cvData, setCVData] = useState(initialCVData);
   const [sectionsAdded, setSectionAdded] = useState([false, false]);
 
   function handleInputEvent(valueKey, sectionLabel, text) {
     const updatedCVData = { ...cvData };
-    if (sectionLabel === availableNames.EDUCATION) {
-      // Update education section
-      // Updating the last entry entered
-      const lastSectionIndex = cvData.education.length - 1;
-      updatedCVData.education[lastSectionIndex][valueKey] = text;
-    } else if (sectionLabel === availableNames.EXPERIENCE) {
-      // Update experience section
-      // Updating the last entry entered
-      const lastSectionIndex = cvData.experience.length - 1;
-      updatedCVData.experience[lastSectionIndex][valueKey] = text;
+
+    if (
+      sectionLabel === availableNames.EDUCATION ||
+      sectionLabel === availableNames.EXPERIENCE
+    ) {
+      const sectionArray =
+        sectionLabel === availableNames.EDUCATION
+          ? updatedCVData.education
+          : updatedCVData.experience;
+      const indexToUpdate = isEditing
+        ? sectionArray.findIndex((entry) => entry.id === idSelected)
+        : sectionArray.length - 1;
+
+      if (indexToUpdate !== -1) {
+        sectionArray[indexToUpdate][valueKey] = text; // Update the specific entry
+      }
     } else {
       // Update personal info
       updatedCVData[valueKey] = text;
     }
+
     setCVData(updatedCVData);
   }
 
   function handleCancelForm(sectionLabel) {
     const updatedCVData = { ...cvData };
-    let sectionLength;
-    if (sectionLabel === availableNames.EDUCATION) {
-      updatedCVData.education.pop();
-      sectionLength = updatedCVData.education.length;
-    } else if (sectionLabel === availableNames.EXPERIENCE) {
-      updatedCVData.experience.pop();
-      sectionLength = updatedCVData.experience.length;
+
+    if (
+      sectionLabel === availableNames.EDUCATION ||
+      sectionLabel === availableNames.EXPERIENCE
+    ) {
+      const sectionArray =
+        sectionLabel === availableNames.EDUCATION
+          ? updatedCVData.education
+          : updatedCVData.experience;
+
+      if (sectionArray.length > 0) {
+        if (isEditing) {
+          // If in edit mode, find the index of the entry being edited
+          const indexToReset = sectionArray.findIndex(
+            (entry) => entry.id === idSelected
+          );
+
+          if (indexToReset !== -1) {
+            // Reset the entry to its original state
+            sectionArray[indexToReset] = originalData; // Assuming you have a variable `originalData` that holds the data before editing
+          }
+        } else {
+          // If not in edit mode, simply pop the last entry
+          sectionArray.pop();
+        }
+      }
+
+      if (sectionArray.length === 0) {
+        removeSectionLabel(sectionLabel);
+      }
+
+      resetEditState();
     }
-    if (sectionLength === 0) {
-      removeSectionLabel(sectionLabel);
-    }
+
     setCVData(updatedCVData);
   }
 
   function handleSectionAddition(index) {
-    // Receiving the index based on the text ("Education","Experience");
     if (index !== undefined && index >= 0 && index < sectionsAdded.length) {
       const updatedSectionsAdded = [...sectionsAdded];
       updatedSectionsAdded[index] = true;
 
-      if (index === availableNames.EDUCATION) {
-        // Create a new education entry object
-        const newEducationEntry = {
-          date: {
-            startDate: "",
-            endDate: "",
-          },
-          schoolName: "",
-          major: "",
-          location: "",
-          gpa: "",
-          id: uuidv4(),
-        };
+      const newEntry =
+        index === availableNames.EDUCATION
+          ? {
+              date: {
+                startDate: "",
+                endDate: "",
+              },
+              school: "",
+              major: "",
+              location: "",
+              gpa: "",
+              id: uuidv4(),
+            }
+          : {
+              date: "",
+              position: "",
+              location: "",
+              description: "",
+              id: uuidv4(),
+            };
 
-        // Append the new education entry to the existing education array
-        const updatedEducation = [...cvData.education, newEducationEntry];
+      const updatedSection =
+        index === availableNames.EDUCATION
+          ? [...cvData.education, newEntry]
+          : [...cvData.experience, newEntry];
 
-        // Update the CV data with the new education array
-        const updatedCVData = {
-          ...cvData,
-          education: updatedEducation,
-        };
+      const updatedCVData = {
+        ...cvData,
+        [index === availableNames.EDUCATION ? "education" : "experience"]:
+          updatedSection,
+      };
 
-        setCVData(updatedCVData);
-      } else if (index === availableNames.EXPERIENCE) {
-        // Create a new experience entry object
-        const newExperienceEntry = {
-          date: "",
-          position: "",
-          location: "",
-          description: "",
-          id: uuidv4(),
-        };
-
-        // Append the new experience entry to the existing experience array
-        const updatedExperience = [...cvData.experience, newExperienceEntry];
-
-        // Update the CV data with the new experience array
-        const updatedCVData = {
-          ...cvData,
-          experience: updatedExperience,
-        };
-
-        setCVData(updatedCVData);
-      }
-
+      setCVData(updatedCVData);
       setSectionAdded(updatedSectionsAdded);
     }
   }
 
+  function handleSubmitEvent() {
+    resetEditState();
+  }
+
   function handleDeleteForm(id, sectionLabel) {
     const updatedCVData = { ...cvData };
-    let sectionLength;
-    if (sectionLabel === availableNames.EDUCATION) {
-      // Filter out the form with the specified ID from the education array
-      const updatedEducation = cvData.education.filter(
-        (entry) => entry.id !== id
-      );
-      updatedCVData.education = updatedEducation;
-      sectionLength = updatedCVData.education.length;
-    } else if (sectionLabel === availableNames.EXPERIENCE) {
-      // Filter out the form with the specified ID from the experience array
-      const updatedExperience = cvData.experience.filter(
-        (entry) => entry.id !== id
-      );
-      updatedCVData.experience = updatedExperience;
-      sectionLength = updatedCVData.experience.length;
-    }
-    if (sectionLength === 0) {
-      removeSectionLabel(sectionLabel);
+
+    if (
+      sectionLabel === availableNames.EDUCATION ||
+      sectionLabel === availableNames.EXPERIENCE
+    ) {
+      const sectionArray =
+        sectionLabel === availableNames.EDUCATION
+          ? updatedCVData.education
+          : updatedCVData.experience;
+
+      const updatedSection = sectionArray.filter((entry) => entry.id !== id);
+
+      if (sectionLabel === availableNames.EDUCATION) {
+        updatedCVData.education = updatedSection;
+      } else if (sectionLabel === availableNames.EXPERIENCE) {
+        updatedCVData.experience = updatedSection;
+      }
+
+      if (updatedSection.length === 0) {
+        removeSectionLabel(sectionLabel);
+      }
     }
 
     setCVData(updatedCVData);
   }
+
+  function handleEditEvent(id, sectionLabel) {
+    setIsEditing(true);
+    setIdSelected(id);
+
+    // Finding the entry being edited based on id
+    const sectionArray =
+      sectionLabel === availableNames.EDUCATION
+        ? cvData.education
+        : cvData.experience;
+    const editedEntry = sectionArray.find((entry) => entry.id === id);
+
+    // Set the original data to a copy of the edited entry
+    setOriginalData({ ...editedEntry });
+  }
+
+  // Helper Functions
   function removeSectionLabel(label) {
     const updatedSections = [...sectionsAdded];
     updatedSections[label] = false;
     setSectionAdded(updatedSections);
+  }
+
+  function resetEditState() {
+    setIsEditing(false); // Reset isEditing to false
+    setIdSelected(null); // Reset idSelected to null
   }
 
   return (
@@ -153,8 +203,10 @@ function App() {
             handleInputEvent={handleInputEvent}
             handleSectionAddition={handleSectionAddition}
             handleCancelForm={handleCancelForm}
-            data={cvData}
             handleDeleteForm={handleDeleteForm}
+            handleEditEvent={handleEditEvent}
+            handleSubmitEvent={handleSubmitEvent}
+            data={cvData}
           />
         </section>
       </main>

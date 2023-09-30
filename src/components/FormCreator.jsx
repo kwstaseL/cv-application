@@ -5,14 +5,14 @@ import Button from "./Button";
 function FormCreator({
   data,
   manageInputEvent,
-  sectionName,
   manageCancelForm,
+  manageSubmitClick,
+  sectionName,
   cvData,
 }) {
   function manageInput(e, field) {
     manageInputEvent(field, e.target.value, sectionName);
   }
-  function submitForm() {}
   const generateForm = () => {
     return data.map((section, sectionIndex) => (
       <div key={sectionIndex}>
@@ -68,10 +68,9 @@ function FormCreator({
   return (
     <form>
       {generateForm()}
-      {/* TODO: Fix this condition statement*/}
       <div className="action-buttons">
         {sectionName != "General Information" && (
-          <Button title="Submit" color="red" onClick={submitForm} />
+          <Button title="Submit" color="red" onClick={manageSubmitClick} />
         )}
         {sectionName != "General Information" && (
           <Button

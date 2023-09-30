@@ -4,8 +4,10 @@ function Forms({
   handleInputEvent,
   handleSectionAddition,
   handleCancelForm,
-  data,
   handleDeleteForm,
+  handleSubmitEvent,
+  handleEditEvent,
+  data,
 }) {
   return (
     <section className="forms content-container section">
@@ -23,6 +25,8 @@ function Forms({
         handleSectionAddition={handleSectionAddition}
         handleCancelForm={handleCancelForm}
         handleDeleteForm={handleDeleteForm}
+        handleEditEvent={handleEditEvent}
+        handleSubmitEvent={handleSubmitEvent}
         data={data.experience}
       />
       <Form
@@ -32,6 +36,8 @@ function Forms({
         handleSectionAddition={handleSectionAddition}
         handleCancelForm={handleCancelForm}
         handleDeleteForm={handleDeleteForm}
+        handleEditEvent={handleEditEvent}
+        handleSubmitEvent={handleSubmitEvent}
         data={data.education}
       />
     </section>
