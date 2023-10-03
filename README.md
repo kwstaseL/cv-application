@@ -1,8 +1,11 @@
-# React + Vite
+## CV Application (Ongoing Project)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Developed with React, serves as a tool for creating and downloading a CV. 
 
-Currently, two official plugins are available:
+User's can:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Input personal information, work experience, and education details.
+- See real-time updates happening and experience full responsiveness.
+- Edit, delete, and export their CV as a PDF file.
+
+*While the core functionality is already in place, I am still working on refining the application. Additionally, I have plans to implement API calls for auto-filling certain information in the near future.*
