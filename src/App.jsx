@@ -203,13 +203,20 @@ function App() {
 
   function onSave() {
     const capture = document.querySelector(".cv");
-    html2canvas(capture).then((canvas) => {
-      const imgData = canvas.toDataURL("img/png");
-      const doc = new jsPDF("p", "mm", "a4");
-      const componentWidth = doc.internal.pageSize.getWidth();
-      const componentHeight = doc.internal.pageSize.getHeight();
-      doc.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
-      doc.save("cv.pdf");
+    const scale = 2; // Increase the scale for higher resolution
+    const options = {
+      scale: scale,
+      useCORS: true,
+    };
+
+    html2canvas(capture, options).then((canvas) => {
+      const imgData = canvas.toDataURL("image/jpeg", 1.0); // Increase the quality to 1.0 for maximum quality
+      const pdf = new jsPDF("p", "mm", "a4");
+      const componentWidth = pdf.internal.pageSize.getWidth();
+      const componentHeight = (canvas.height * componentWidth) / canvas.width;
+
+      pdf.addImage(imgData, "JPEG", 0, 0, componentWidth, componentHeight);
+      pdf.save("cv.pdf");
     });
   }
 
