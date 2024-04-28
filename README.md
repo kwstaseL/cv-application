@@ -1,4 +1,4 @@
-## CV Application (Ongoing Project)
+## CV Application
 
 Developed with React, serves as a tool for creating and downloading a CV. 
 
